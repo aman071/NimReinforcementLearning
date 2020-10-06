@@ -125,7 +125,7 @@ class NimAI():
         """
         new_value_estimate=reward + future_rewards
 
-        self.q[state,action] = old_q + self.alpha*()
+        self.q[state,action] = old_q + self.alpha*(reward + self.epsilon*max(Q(s_dash, a_dash)) - old_q)
 
     def best_future_reward(self, state):
         """
