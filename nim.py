@@ -123,9 +123,9 @@ class NimAI():
         `alpha` is the learning rate, and `new value estimate`
         is the sum of the current reward and estimated future rewards.
         """
-        new_value_estimate=reward + future_rewards
+        new_value_estimate=reward + self.epsilon*future_rewards
 
-        self.q[state,action] = old_q + self.alpha*(reward + self.epsilon*max(Q(s_dash, a_dash)) - old_q)
+        self.q[state, action] = old_q + self.alpha * ( new_value_estimate - old_q)
 
     def best_future_reward(self, state):
         """
@@ -137,7 +137,7 @@ class NimAI():
         Q-value in `self.q`. If there are no available actions in
         `state`, return 0.
         """
-        raise NotImplementedError
+        print(self.q[state])
 
     def choose_action(self, state, epsilon=True):
         """
@@ -154,7 +154,7 @@ class NimAI():
         If multiple actions have the same Q-value, any of those
         options is an acceptable return value.
         """
-        raise NotImplementedError
+        print(state)
 
 
 def train(n):
